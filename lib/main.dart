@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:barcode_scanner/data/datasources/camera_data_source.dart';
 import 'package:barcode_scanner/data/datasources/image_picker_data_source.dart';
-import 'package:barcode_scanner/data/datasources/mlkit_barcode_data_source.dart';
-import 'package:barcode_scanner/data/repositories/barcode_repository_impl.dart';
-import 'package:barcode_scanner/domain/repositories/barcode_repository.dart';
-import 'package:barcode_scanner/presentation/bloc/barcode_scanner_bloc.dart';
-import 'package:barcode_scanner/presentation/pages/scanner_page.dart';
+import 'package:barcode_scanner/data/datasources/mlkit_data_source.dart';
+
+import 'package:barcode_scanner/presentation/view/scanner_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
