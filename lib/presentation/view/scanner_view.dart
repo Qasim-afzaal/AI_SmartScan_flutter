@@ -32,7 +32,7 @@ class ScannerView extends StatelessWidget {
               : const Placeholder(),
         ),
         ElevatedButton(
-          onPressed: () => _scanImage(context),
+
           child: const Text('Scan Object')),
       ],
     );
