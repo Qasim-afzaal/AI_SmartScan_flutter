@@ -3,9 +3,7 @@ import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 import 'package:http/http.dart' as http;
 
 class ScannerRepository {
-  final MLKitDataSource _mlKitDataSource;
-  final ImagePickerDataSource _imagePickerDataSource;
-
+  
   ScannerRepository(this._mlKitDataSource, this._imagePickerDataSource);
 
   Future<String?> pickImage() => _imagePickerDataSource.pickImage();
