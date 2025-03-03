@@ -1,10 +1,12 @@
 import 'package:barcode_scanner/data/repositories/auth_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
 class AuthViewModel with ChangeNotifier {
   final AuthRepository _repo = AuthRepository();
   bool _isLoading = false;
   String? _error;
+  User? user;
 
   bool get isLoading => _isLoading;
   String? get error => _error;
