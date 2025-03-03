@@ -35,7 +35,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/smartscan-flutter.git
+git clone https://github.com/Qasi-afzaal/smartscan-flutter.git
 cd smartscan-flutter
 
 # 2. Get dependencies
@@ -53,13 +53,6 @@ flutter run
 + FIREBASE_API_KEY=your_firebase_key
 ```
 
-## 📸 𝕊𝕔𝕣𝕖𝕖𝕟𝕤𝕙𝕠𝕥𝕤
-
-<div align="center">
-  <img src="screenshots/auth.jpg" width="200" alt="Auth Screen" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-  <img src="screenshots/scan.jpg" width="200" alt="Scan Screen" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-  <img src="screenshots/result.jpg" width="200" alt="Result Screen" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-</div>
 
 ## 🌈 ℂ𝕠𝕟𝕥𝕣𝕚𝕓𝕦𝕥𝕚𝕟𝕘
 
@@ -97,26 +90,3 @@ flutter run
                  ||--|| *
   ```
 </div>
-```
-
-Key styling elements included:
-
-1. **Funky Unicode Characters**: Uses mathematical bold script for headings
-2. **Emoji Integration**: Over 50+ relevant emojis throughout
-3. **Colorful Badges**: Custom-colored badges with emoji prefixes
-4. **ASCII Art**: Robot bunny and text bubble
-5. **Diff Blocks**: Colored code blocks for visual emphasis
-6. **Shadow Effects**: On screenshots using inline CSS
-7. **Star History Chart**: Embedded GitHub star history
-8. **Animated GIF Header**: Eye-catching AI animation
-9. **Stylized Tables**: With emoji-enhanced headers
-10. **Custom Code Block Styles**: Using diff syntax coloring
-
-To complete this setup:
-1. Add your actual screenshots
-2. Replace placeholder URLs
-3. Add the animated header GIF
-4. Update license information
-5. Add proper Firebase/ML Kit credentials
-
-Want me to create matching GitHub issue templates or contribution guidelines in the same style? 😎
