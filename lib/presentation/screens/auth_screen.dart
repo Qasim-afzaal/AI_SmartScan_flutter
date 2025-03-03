@@ -18,7 +18,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<AuthViewModel>(context);
+    final authViewModel = Provider.of<AuthViewModel>(context);
+
     return Scaffold(
       appBar: AppBar(title: Text(_isLogin ? 'Login' : 'Sign Up')),
       body: Padding(
@@ -37,21 +38,16 @@ class _AuthScreenState extends State<AuthScreen> {
               icon: Icons.lock,
               obscureText: true,
             ),
-            if (vm.error != null)
+            if (authViewModel.error?.isNotEmpty == true)
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: Text(
-                  vm.error!,
-                  style: TextStyle(color: Colors.red),
+                  authViewModel.error!,
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
             const SizedBox(height: 24),
-            vm.isLoading
-                ? const CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: () => _submitForm(vm),
-                    child: Text(_isLogin ? 'Login' : 'Sign Up'),
-                  ),
+            _buildAuthButton(authViewModel),
             TextButton(
               onPressed: () => setState(() => _isLogin = !_isLogin),
               child: Text(_isLogin 
@@ -64,14 +60,23 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  void _submitForm(AuthViewModel vm) {
+  Widget _buildAuthButton(AuthViewModel authViewModel) {
+    return authViewModel.isLoading
+        ? const CircularProgressIndicator()
+        : ElevatedButton(
+            onPressed: () => _authenticateUser(authViewModel),
+            child: Text(_isLogin ? 'Login' : 'Sign Up'),
+          );
+  }
+
+  void _authenticateUser(AuthViewModel authViewModel) {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
     
     if (_isLogin) {
-      vm.login(email, password);
+      authViewModel.login(email, password);
     } else {
-      vm.signUp(email, password);
+      authViewModel.signUp(email, password);
     }
   }
 }
