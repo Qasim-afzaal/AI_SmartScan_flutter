@@ -7,7 +7,7 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<ScanViewModel>(context);
+    final scanViewModel = Provider.of<ScanViewModel>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -16,7 +16,7 @@ class ResultScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.close),
             onPressed: () {
-              vm.clearResults();
+              scanViewModel.clearResults();
               Navigator.pop(context);
             },
           ),
@@ -26,21 +26,21 @@ class ResultScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (vm.image != null)
+            if (scanViewModel.image != null)
               Container(
                 height: 300,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: FileImage(vm.image!),
+                    image: FileImage(scanViewModel.image!),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: vm.result != null 
-                  ? _buildResultCard(vm.result!)
-                  : _buildErrorWidget(vm.error ?? 'Unknown error occurred'),
+              child: scanViewModel.result != null
+                  ? _buildResultDisplay(scanViewModel.result!)
+                  : _buildErrorMessage(scanViewModel.error ?? 'Unknown error occurred'),
             ),
           ],
         ),
@@ -48,7 +48,7 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildResultCard(String result) {
+  Widget _buildResultDisplay(String result) {
     return Card(
       elevation: 4,
       child: Padding(
@@ -66,7 +66,7 @@ class ResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              _cleanHtmlTags(result),
+              _stripHtmlTags(result),
               style: const TextStyle(fontSize: 16),
               textAlign: TextAlign.justify,
             ),
@@ -76,7 +76,7 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildErrorWidget(String error) {
+  Widget _buildErrorMessage(String error) {
     return Card(
       color: Colors.red[50],
       elevation: 4,
@@ -96,7 +96,7 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  String _cleanHtmlTags(String text) {
+  String _stripHtmlTags(String text) {
     return text.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), '');
   }
 }
