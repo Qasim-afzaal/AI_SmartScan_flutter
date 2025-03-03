@@ -17,11 +17,7 @@ A Flutter application that combines Firebase authentication with ML-powered obje
 - 📱 Responsive UI with error handling and loading states
 - 🔄 Seamless navigation between screens
 
-## Screenshots
 
-| Authentication | Home Screen | Camera Scan | Results |
-|----------------|-------------|-------------|---------|
-| <img src="screenshots/auth.jpg" width="200"> | <img src="screenshots/home.jpg" width="200"> | <img src="screenshots/scan.jpg" width="200"> | <img src="screenshots/result.jpg" width="200"> |
 
 ## Installation
 
