@@ -1,5 +1,12 @@
+import 'package:barcode_scanner/data/repositories/auth_repository.dart';
+import 'package:barcode_scanner/domain/view_model/auth_viewmodel.dart';
+import 'package:barcode_scanner/domain/view_model/scan_viewmodel.dart';
+import 'package:barcode_scanner/presentation/screens/auth_screen.dart';
+import 'package:barcode_scanner/presentation/screens/home_screen.dart';
+import 'package:barcode_scanner/presentation/screens/result_screen.dart';
 import 'package:barcode_scanner/presentation/screens/scan_screen.dart';
 import 'package:camera/camera.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
