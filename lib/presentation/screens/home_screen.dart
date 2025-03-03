@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authVm = Provider.of<AuthViewModel>(context);
+    final authViewModel = Provider.of<AuthViewModel>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              authVm.logout();
+              authViewModel.logout();
               Navigator.pushReplacementNamed(context, AppRoutes.auth);
             },
           ),
@@ -36,23 +36,23 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            _buildUserInfo(authVm),
+            _buildUserDetails(authViewModel),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildUserInfo(AuthViewModel vm) {
-    if (vm.user == null) return const SizedBox.shrink();
+  Widget _buildUserDetails(AuthViewModel authViewModel) {
+    if (authViewModel.user == null) return const SizedBox.shrink();
     
     return Column(
       children: [
         const SizedBox(height: 20),
         ListTile(
           leading: const Icon(Icons.email),
-          title: Text(vm.user!.email!),
-          subtitle: Text('UID: ${vm.user!.uid}'),
+          title: Text(authViewModel.user?.email ?? 'No Email'),
+          subtitle: Text('UID: ${authViewModel.user?.uid ?? 'Unknown'}'),
         ),
       ],
     );
