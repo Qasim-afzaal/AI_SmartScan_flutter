@@ -15,47 +15,47 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
-  late CameraController _controller;
-  bool _isCameraReady = false;
+  late CameraController _cameraController;
+  bool _isCameraInitialized = false;
 
   @override
   void initState() {
     super.initState();
-    _initCamera();
+    _initializeCamera();
   }
 
-  Future<void> _initCamera() async {
-    _controller = CameraController(
-      widget.cameras[0],
+  Future<void> _initializeCamera() async {
+    _cameraController = CameraController(
+      widget.cameras.first,
       ResolutionPreset.medium,
     );
-    
-    await _controller.initialize();
-    setState(() => _isCameraReady = true);
+
+    await _cameraController.initialize();
+    setState(() => _isCameraInitialized = true);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _cameraController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<ScanViewModel>(context);
-    
+    final scanViewModel = Provider.of<ScanViewModel>(context);
+
     return Scaffold(
       body: Stack(
         children: [
-          if (_isCameraReady) CameraPreview(_controller),
-          if (vm.isLoading)
+          if (_isCameraInitialized) CameraPreview(_cameraController),
+          if (scanViewModel.isLoading)
             const Center(child: CircularProgressIndicator()),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.all(32.0),
               child: FloatingActionButton(
-                onPressed: _captureImage,
+                onPressed: _onCapturePressed,
                 child: const Icon(Icons.camera_alt),
               ),
             ),
@@ -65,17 +65,17 @@ class _ScanScreenState extends State<ScanScreen> {
     );
   }
 
-  Future<void> _captureImage() async {
-    final vm = Provider.of<ScanViewModel>(context, listen: false);
+  Future<void> _onCapturePressed() async {
+    final scanViewModel = Provider.of<ScanViewModel>(context, listen: false);
     try {
-      final image = await _controller.takePicture();
-      await vm.processImage(File(image.path));
-      if (vm.result != null) {
+      final image = await _cameraController.takePicture();
+      await scanViewModel.processImage(File(image.path));
+      if (scanViewModel.result != null) {
         Navigator.pushNamed(context, '/result');
       }
-    } catch (e) {
+    } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}')),
+        SnackBar(content: Text('Error: ${error.toString()}')),
       );
     }
   }
